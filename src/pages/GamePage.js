@@ -13,16 +13,19 @@ export default defineComponent({
 		// 创建敌军飞机
 		const enemyPlanes = useCreateEnemyPlanes()
 
-		// 创建子弹，维护数组
-		const bullys = reactive([])
-		window.addEventListener('keydown', (e) => {
-			switch (e.code) {
-				case 'Space':
-					let bully = { x: planeInfo.x + 105, y: planeInfo.y - 45, width: 61, height: 99 }
-					bullys.push(bully)
-					break
-			}
-		})
+		// 创建子弹，维护数组方式一
+		// const bullys = reactive([])
+		// window.addEventListener('keydown', (e) => {
+		// 	switch (e.code) {
+		// 		case 'Space':
+		// 			let bully = { x: planeInfo.x + 105, y: planeInfo.y - 45, width: 61, height: 99 }
+		// 			bullys.push(bully)
+		// 			break
+		// 	}
+		// })
+
+		// 创建子弹，维护数组方式二，将我方飞机的信息当成参数传递进去，获取我方飞机的实时位置
+		const bullys = useCreateBullyArray(planeInfo)
 
 		const handleTicker = () => {
 			// 敌方飞机下移
@@ -113,12 +116,12 @@ function useCreateEnemyPlanes() {
 	return enemyPlanes
 }
 
-function useCreateBullyArray() {
+function useCreateBullyArray(planeInfo) {
 	const bullys = reactive([])
 	window.addEventListener('keydown', (e) => {
 		switch (e.code) {
 			case 'Space':
-				let bully = { x: planeInfo.x + 105, y: planeInfo.y - 45 }
+				let bully = { x: planeInfo.x + 105, y: planeInfo.y - 45, width: 61, height: 99 }
 				bullys.push(bully)
 				break
 		}
