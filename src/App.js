@@ -4,31 +4,25 @@ import GamePage from './pages/GamePage'
 import EndPage from './pages/EndPage'
 
 export default defineComponent({
-	setup(props, ctx) {
-		const currentPageName = ref('StartPage')
+  setup(props, ctx) {
+    const currentPageName = ref('GamePage')
+    const handlePageChange = page => {
+      console.log('page :>> ', page)
+      currentPageName.value = page
+    }
 
-		const handleChangePage = (page) => {
-			currentPageName.value = page
-		}
+    const currentPage = computed(() => {
+      return currentPageName.value === 'StartPage'
+        ? StartPage
+        : currentPageName.value === 'EndPage'
+        ? EndPage
+        : GamePage
+    })
 
-		const currentPage = computed(() => {
-			if (currentPageName.value === 'StartPage') {
-				return StartPage
-			} else if (currentPageName.value === 'GamePage') {
-				return GamePage
-			} else if (currentPageName.value === 'EndPage') {
-				return EndPage
-			}
-		})
-
-		return { handleChangePage, currentPage }
-	},
-	render(ctx) {
-		const { handleChangePage, currentPage } = ctx
-		return h('Container', [
-			h(currentPage, {
-				onChangePage: handleChangePage
-			})
-		])
-	}
+    return { handlePageChange, currentPage }
+  },
+  render(ctx) {
+    const { handlePageChange, currentPage } = ctx
+    return h('Container', [h(currentPage, { onChangePage: handlePageChange })])
+  },
 })
