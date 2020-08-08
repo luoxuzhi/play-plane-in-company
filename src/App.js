@@ -5,7 +5,7 @@ import EndPage from './pages/EndPage'
 
 export default defineComponent({
   setup(props, ctx) {
-    const currentPageName = ref('GamePage')
+    const currentPageName = ref('StartPage')
     const handlePageChange = page => {
       console.log('page :>> ', page)
       currentPageName.value = page

@@ -7,6 +7,7 @@ module.exports = {
     filename: 'build.js',
   },
   devtool: 'source-map',
+  mode: 'production',
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
   },
