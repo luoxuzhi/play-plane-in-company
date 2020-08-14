@@ -61,6 +61,6 @@ const renderer = createRenderer({
   nextSibling() {},
 })
 
-export default function (rootNode) {
-  return renderer.createApp(rootNode)
+export default function (rootComponent) {
+  return renderer.createApp(rootComponent)
 }
