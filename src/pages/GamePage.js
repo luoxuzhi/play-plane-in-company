@@ -4,7 +4,8 @@ import Plane from '../components/Plane'
 import Bullet from '../components/Bullet'
 import EnemyPlane from '../components/EnemyPlane'
 import EnemyBullet from '../components/EnemyBullet'
-import Score from '../components/Scroe'
+import Score from '../components/Score'
+import Tip from '../components/Tip'
 import { game } from '../Game'
 import { CONTAINER_WIDTH, CONTAINER_HEIGHT, objHitTest, debounce } from '../utils'
 
@@ -45,6 +46,7 @@ export default defineComponent({
       h(Map),
       h(Plane, { x: planeInfo.x, y: planeInfo.y }),
       h(Score, { score, x: 600, y: 50 }),
+      h(Tip, { x: 30, y: 50 }),
       ...createSelfBullets(),
       ...createEnemyPlanes(),
       ...creatEnemyBullets(),
