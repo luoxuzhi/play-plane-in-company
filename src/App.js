@@ -4,7 +4,14 @@ import GamePage from './pages/GamePage'
 import EndPage from './pages/EndPage'
 
 export default defineComponent({
+  created(){
+    console.log('created');
+  },
+  beforeCreate(){
+    console.log('beforeCreated');
+  },
   setup(props, ctx) {
+    console.log('setup');
     const currentPageName = ref('StartPage')
     const handlePageChange = page => {
       console.log('page :>> ', page)
