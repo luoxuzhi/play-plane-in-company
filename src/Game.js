@@ -8,6 +8,4 @@ export const game = new Application({
 
 document.body.append(game.view)
 
-export const generateRootNode = () => {
-  return game.stage
-}
+export const generateRootNode = () => game.stage
