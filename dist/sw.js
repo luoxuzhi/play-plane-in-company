@@ -13,21 +13,22 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', event => {
   console.log('serviceWorkerFetch')
-  event.respondWith(response => {
-    if (response) return response
-  })
 
-  let fetchRequest = event.request.clone()
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      if (response) return response
 
-  return fetch(fetchRequest).then(response => {
-    if (!response || response.status !== 200 || response.type !== 'basic') return response
+      let fetchRequest = event.request.clone()
 
-    let responseToCache = response.clone()
+      return fetch(fetchRequest).then(response => {
+        if (!response || response.status !== 200 || response.type !== 'basic') return response
 
-    caches.open(CACHE_NAME).then(cache => {
-      cache.put(event.request, responseToCache)
+        let responseToCache = response.clone()
+
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseToCache))
+
+        return response
+      })
     })
-
-    return response
-  })
+  )
 })
