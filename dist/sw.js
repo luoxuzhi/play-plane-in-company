@@ -13,7 +13,7 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', event => {
   console.log('serviceWorkerFetch')
-  event.responWith(response => {
+  event.respondWith(response => {
     if (response) return response
   })
 
