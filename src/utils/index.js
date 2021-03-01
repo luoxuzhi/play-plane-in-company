@@ -1,5 +1,3 @@
-import { apply } from 'file-loader'
-
 export const CONTAINER_WIDTH = 750
 export const CONTAINER_HEIGHT = 1080
 
